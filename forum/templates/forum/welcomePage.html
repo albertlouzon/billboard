@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</head>
+
+<style>
+
+    body{
+        background-color : rgba(0,0,0,0.3)
+    }
+
+    #postContainer{
+        display:flex;
+        flex-flow : row nowrap;
+        justify-content : space-around;
+        align-items:center;
+    }
+
+    .msgContainer{
+        border : 2px solid lightblue;
+        padding:5vh;
+    }
+
+    .authorText{
+        text-align:center;
+    }
+
+
+</style>
+
+<body>
+    <div class="bigBox">
+        <form method="get", action="post_message/" id="postContainer">
+             <input type="text" name="msg_author"
+                    value="{{request.get.msg_author}}" placeholder="author"/>
+            <input type="text" name="msg_title"
+                    value="{{request.get.msg_title}}" placeholder="title"/>
+            <input type="text" name="msg_content"
+                    value="{{request.get.msg_content}}" placeholder="content"/>
+            <input type="submit" name="userSubmit"/>
+        </form>
+
+        {%for Message in msg_data%}
+            <li class = msgContainer>
+                <pre class = authorText>{{Message.author}}</pre>
+                <pre class = titleText>{{Message.title}}</pre>
+                <pre class = contentText>{{Message.content}}</pre>
+            </li>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>

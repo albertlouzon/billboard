@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<style>
+     body {
+        background-color: rgba(140,80,60,0.2);
+    }
+
+    .topnav {
+     background-color: #333;
+     overflow: hidden;
+}
+
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+</style>
+
+<body>
+    <div class="topnav">
+         <a class="active" href="{{home_url}}">Welcome</a>
+         <a href="{{news_url}}">News Feed</a>
+    </div>
+
+    {% if last_visit %}
+        <h1>Welcome! You visited us on : {{last_visit}}</h1>
+    {% else %}
+        <h1>Welcome !</h1>
+    {% endif %}
+    <form method="get",action="">
+     <input type="text" name="userInput" value="{{request.get.userInput}}"/><input type="submit" name="userSubmit"/>
+    </form>
+    {% if errorMessage %}
+        <h1>{{errorMessage}}</h1>
+    {% endif %}
+    <ul>
+        {%for attr, value in msg_dict.__dict__.iteritems()%}
+             <li>{{attr}}</li>
+        {% endfor %}
+
+    </ul>
+</body>
+
+</html>

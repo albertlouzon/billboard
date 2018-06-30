@@ -19,7 +19,7 @@
         <div id="addMsgContainer"> <span>Billboard</span><pre>Click the '+' button to add a new message</pre>
             <button class="btn-success bottomBtn" id="addMsg">+</button></div>
         {%for Message in msg_data%}
-            {% if Message.author and Message.content%}
+            {% if Message.content and Message.content%}
                  <li class = msgContainer>
                      <span class = authorDate>{{Message.date}}</span>
                      <pre class = titleText>{{Message.title}}</pre>

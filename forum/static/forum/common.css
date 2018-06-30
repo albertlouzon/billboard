@@ -1,0 +1,103 @@
+    body{
+        background-color : white;
+    }
+
+    #addMsg{
+        transition: all .2s ease-in-out;
+        font-weight:bold;
+    }
+    #addMsg:hover{
+        transform: scale(1.2);
+    }
+
+
+
+    #postContainer{
+        position:fixed;
+        width:100%;
+        bottom:0;
+        display:flex;
+        flex-flow : column nowrap;
+        justify-content : space-around;
+        align-items:center;
+        border : dashed #24a7e3 3px;
+        padding:2vh;
+        background-color:white;
+    }
+
+    #addMsgContainer{
+        width:100%;
+        padding:1vh;
+        display:flex;
+        flex-flow : column nowrap;
+        justify-content : space-around;
+        align-items:center;
+        border : dashed black 2px;
+    }
+
+
+
+    .msgContainer{
+        border : 2px solid #24a7e3;
+        margin:2vh;
+        padding:2vh;
+        list-style:none;
+    }
+
+    .authorDate{
+       font-size:10px;
+       margin-left:2vh;
+    }
+
+    .authorText{
+        font-style:italic;
+    }
+
+    .titleText{
+        font-size:26px;
+        font-weight:bold;
+        color:#24a7e3;
+        margin-left:2vh;
+    }
+    .contentText{
+        text-align:center;
+        padding:2vh;
+    }
+    .authorText{
+       float:right;
+       padding:1vh;
+       font-weight:bold;
+       font-size:18px;
+    }
+
+    #msg_content{
+        width:100%;
+        height:100px;
+        border:1px solid black;
+        margin:3vh;
+
+    }
+
+    #msg_title{
+        align-self:flex-start;
+    }
+    #msg_author{
+        align-self:flex-end;
+    }
+    #msg_content::placeholder{
+        font-style: italic;
+    }
+
+    .btnContainer{
+        padding:1vh;
+        display:flex;
+        justify-content:center;
+        width:100%;
+        border : dashed black 2px;
+        margin-top:1vh;
+        }
+    .bottomBtn{
+        padding : 1vh 7vh;
+        margin: 0 1vh;
+        border-radius:10px;
+    }

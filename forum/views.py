@@ -9,14 +9,10 @@ import datetime
 from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
-
-
-
 def welcome(request):
     msg_data = Message_forum.objects.all()
     context = {
         'msg_data': msg_data,
-        'last_visit': datetime.datetime.now(),
     }
     return render(request, 'forum/welcomePage.html', context)
 
@@ -25,11 +21,13 @@ def post_message(request):
     msg_content = request.GET.get('msg_content')
     msg_author = request.GET.get('msg_author')
     msg_title = request.GET.get('msg_title')
-    list_of_messages = Message_forum(title=msg_title, content=msg_content, author=msg_author)
-    list_of_messages.save()
+    list_of_messages = Message_forum(title=msg_title, content=msg_content, author=msg_author,
+                                     date=datetime.datetime.now().strftime("%y/%m/%d"))
+    if list_of_messages.content and list_of_messages.author and list_of_messages.title:
+        list_of_messages.save()
     msg_data = Message_forum.objects.all()
     context = {
         'msg_data': msg_data,
-        'last_visit': datetime.datetime.now(),
     }
     return render(request, 'forum/welcomePage.html', context)
+

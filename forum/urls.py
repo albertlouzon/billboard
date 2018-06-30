@@ -9,4 +9,5 @@ app_name = 'forum'
 urlpatterns = [
     url(r'^$', views.welcome, name='welcome'),
     url(r'post_message/', views.post_message, name='post_message'),
+    path(r'admin/', admin.site.urls),
 ]

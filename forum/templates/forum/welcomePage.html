@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
 
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
             integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"
+              integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'forum/common.css' %}" />
 </head>
 
-<style>
-
-    body{
-        background-color : rgba(0,0,0,0.3)
-    }
-
-    #postContainer{
-        display:flex;
-        flex-flow : row nowrap;
-        justify-content : space-around;
-        align-items:center;
-    }
-
-    .msgContainer{
-        border : 2px solid lightblue;
-        padding:5vh;
-    }
-
-    .authorText{
-        text-align:center;
-    }
-
-
-</style>
 
 <body>
-    <div class="bigBox">
+    <div class="bigBox container">
+        <div id="addMsgContainer"> <span>Billboard</span><pre>Click the '+' button to add a new message</pre>
+            <button class="btn-success bottomBtn" id="addMsg">+</button></div>
+        {%for Message in msg_data%}
+            {% if Message.author and Message.content%}
+                 <li class = msgContainer>
+                     <span class = authorDate>{{Message.date}}</span>
+                     <pre class = titleText>{{Message.title}}</pre>
+                     <span class = contentText>{{Message.content}}</span>
+                     <pre class = authorText>{{Message.author}}</pre>
+                 </li>
+            {% else %}
+            {% endif %}
+
+        {% endfor %}
+        </div>
         <form method="get", action="post_message/" id="postContainer">
-             <input type="text" name="msg_author"
-                    value="{{request.get.msg_author}}" placeholder="author"/>
             <input type="text" name="msg_title"
-                    value="{{request.get.msg_title}}" placeholder="title"/>
+                    value="{{request.get.msg_title}}" placeholder="Title" id="msg_title"/>
             <input type="text" name="msg_content"
-                    value="{{request.get.msg_content}}" placeholder="content"/>
-            <input type="submit" name="userSubmit"/>
+                    value="{{request.get.msg_content}}" placeholder="Your message here" id="msg_content"/>
+            <input type="text" name="msg_author"
+                    value="{{request.get.msg_author}}" placeholder="Author" id="msg_author"/>
+            <div class="btnContainer">
+                <button class="btn-danger bottomBtn" id="userCancel">X</button>
+                <input type="submit" value="V" name="userSubmit" class="btn-success bottomBtn" id="userSubmit"/>
+            </div>
+
         </form>
 
-        {%for Message in msg_data%}
-            <li class = msgContainer>
-                <pre class = authorText>{{Message.author}}</pre>
-                <pre class = titleText>{{Message.title}}</pre>
-                <pre class = contentText>{{Message.content}}</pre>
-            </li>
-        {% endfor %}
-    </div>
-
+    <script>
+        $("#userCancel").on('click',function(){
+            $("#postContainer").empty()
+        })
+        $("#addMsg").on('click',function(){
+            window.location = "welcome/";
+        })
+    </script>
 </body>
 
 </html>
